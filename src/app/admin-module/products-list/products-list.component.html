@@ -1,0 +1,37 @@
+<div class="products-list-wrapper mt-5 pt-4">
+    <div class="container-fluid">
+      <div class="text-right">
+        <input type="text" class="form-control d-inline-block w-auto mr-4" [(ngModel)]="searchText" (input)="filterProducts()" placeholder="Enter name to search...">
+        <button mat-raised-button class="btn btn-outline-primary m-3" (click)="openDialog('create')">
+            Add Product
+        </button>
+      </div>
+        <div class="row" *ngIf="productsList && productsList.length">
+            <div class="col-xl-3 col-md-4" *ngFor="let product of productsList">
+                
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" class="bg-transparent border-0 d-inline-block float-right">
+                            <span class="material-icons">
+                                more_vert
+                                </span>
+                          </button>
+                          <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="openDialog('edit',product)">
+                              <span>Edit</span>
+                            </button>
+                            <button mat-menu-item (click)="openDialog('delete',product)">
+                              <span>Delete</span>
+                            </button>
+                          </mat-menu>
+
+                          
+                      <h5 class="card-title">{{product.name}}</h5>
+                      <p class="card-text">{{product.description}}</p>
+                      <p class="card-text">{{product.currencySymbol}}{{product.price}}</p>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>

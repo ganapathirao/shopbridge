@@ -1,0 +1,21 @@
+.error-msg{
+    bottom: 0px;
+    left: 0;
+}
+.currency-dropdown{
+    width: 40px;
+    height: 60px;
+    top: -11px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-right: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) { 
+    .currency-dropdown{
+        height: 51px;
+        top: -9px;
+    }  
+}

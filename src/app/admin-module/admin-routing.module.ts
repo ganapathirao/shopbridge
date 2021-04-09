@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 // import { AdminModule } from './admin-module/admin.module';
+import { ProductsComponent } from './products-list/products-list.component';
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('./admin-module/admin.module').then(m => m.AdminModule)
+    path:'',
+    component:ProductsComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AdminRoutingModule { }

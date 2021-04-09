@@ -1,0 +1,88 @@
+
+<div *ngIf="data.operation === 'delete'">
+    <div class="product-modal">
+        <div class="modal-header m-0">
+            <h4 class="m-0">Are you sure? you want to delete?</h4>
+            <button class="c-pointer ml-4 bg-transparent border-0" (click)="dialogRef.close()">
+                <span class="material-icons">
+                    close
+                </span>
+            </button>
+        </div>
+        <div class="modal-footer">
+           <button class="btn btn-primary" (click)="dialogRef.close()">No</button>
+           <button class="btn btn-danger" (click)="deleteItem(data?.formData?.id)">Yes</button>
+        </div>
+    </div>
+
+</div>
+<div *ngIf="data.operation != 'delete'">
+    <div class="product-modal">
+        <div class="modal-header">
+            <h4 class="m-0" *ngIf="data.operation === 'edit'">Edit Product</h4>
+            <h4 class="m-0" *ngIf="data.operation === 'create'">Add Product</h4>
+            <button class="c-pointer ml-4 bg-transparent border-0" (click)="dialogRef.close()">
+                <span class="material-icons">
+                    close
+                </span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form class="product-form" [formGroup]="productForm" (ngSubmit)="createItem()">
+                <div class="position-relative mb-2">
+                    <mat-form-field class="w-100" appearance="outline">
+                      <mat-label>Name</mat-label>
+                      <input matInput placeholder="Enter Product Name" formControlName="name">
+                    </mat-form-field>
+                    <div class="error-msg text-danger position-absolute" *ngIf="productForm?.controls['name'].touched && productForm?.controls['name']?.errors?.required">
+                        Enter name value
+                    </div>
+                </div>
+                <div class="position-relative mb-2">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput placeholder="Enter Description" formControlName="description"></textarea>
+                    </mat-form-field>
+                    <div class="error-msg text-danger position-absolute" *ngIf="productForm?.controls['description'].touched && productForm?.controls['description']?.errors?.required">
+                        Enter description value
+                    </div>
+                </div>
+                <div class="position-relative mb-2 d-flex align-items-center">
+                    <div>
+                        <mat-form-field class="currency-dropdown text-center" appearance="none">
+                            <mat-select formControlName="currencySymbol">
+                                <mat-option value="$">
+                                    $
+                                </mat-option>
+                                <mat-option value="₹">
+                                ₹
+                                </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                    </div>
+                    <div class="w-100 input-prefix">
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label>Price</mat-label>
+                            <input matInput type="text" placeholder="Enter Price" formControlName="price">
+                        </mat-form-field>
+                        <div class="error-msg text-danger position-absolute" *ngIf="productForm?.controls['price'].touched && productForm?.controls['price']?.errors?.required">
+                            Enter price value
+                        </div>
+                        <div class="error-msg text-danger position-absolute" *ngIf="productForm?.controls['price'].touched && productForm?.controls['price']?.errors?.pattern">
+                            Enter number value
+                        </div>
+                    </div>
+                </div>
+        
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline-primary" (click)="dialogRef.close()">Close</button>
+            <button class="btn btn-primary" type="button" (click)="createItem()" *ngIf="data.operation === 'create'">Create</button>
+            <button class="btn btn-primary" type="button" (click)="updateItem()" [disabled]="isFormUpdated() || productForm.invalid" *ngIf="data.operation === 'edit'">Update</button>
+        </div>
+    </div>
+</div>
+<!-- <div *ngIf="data.operation === 'create'">
+    <p>product-create-modal works!</p>
+</div> -->
