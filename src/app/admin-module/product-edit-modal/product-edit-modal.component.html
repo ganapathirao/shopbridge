@@ -1,6 +1,7 @@
-
+<!-- Template for delete modal -->
 <div *ngIf="data.operation === 'delete'">
     <div class="product-modal">
+        <!-- modal header -->
         <div class="modal-header m-0">
             <h4 class="m-0">Are you sure? you want to delete?</h4>
             <button class="c-pointer ml-4 bg-transparent border-0" (click)="dialogRef.close()">
@@ -9,6 +10,7 @@
                 </span>
             </button>
         </div>
+        <!-- modal footer -->
         <div class="modal-footer">
            <button class="btn btn-primary" (click)="dialogRef.close()">No</button>
            <button class="btn btn-danger" (click)="deleteItem(data?.formData?.id)">Yes</button>
@@ -16,8 +18,11 @@
     </div>
 
 </div>
+
+<!-- Template for create,edit modal -->
 <div *ngIf="data.operation != 'delete'">
     <div class="product-modal">
+        <!-- modal header -->
         <div class="modal-header">
             <h4 class="m-0" *ngIf="data.operation === 'edit'">Edit Product</h4>
             <h4 class="m-0" *ngIf="data.operation === 'create'">Add Product</h4>
@@ -27,8 +32,9 @@
                 </span>
             </button>
         </div>
+        <!-- modal body -->
         <div class="modal-body">
-            <form class="product-form" [formGroup]="productForm" (ngSubmit)="createItem()">
+            <form class="product-form" [formGroup]="productForm">
                 <div class="position-relative mb-2">
                     <mat-form-field class="w-100" appearance="outline">
                       <mat-label>Name</mat-label>
@@ -55,7 +61,7 @@
                                     $
                                 </mat-option>
                                 <mat-option value="₹">
-                                ₹
+                                    ₹
                                 </mat-option>
                             </mat-select>
                           </mat-form-field>
@@ -76,6 +82,7 @@
         
             </form>
         </div>
+        <!-- modal footer -->
         <div class="modal-footer">
             <button class="btn btn-outline-primary" (click)="dialogRef.close()">Close</button>
             <button class="btn btn-primary" type="button" (click)="createItem()" *ngIf="data.operation === 'create'">Create</button>
@@ -83,6 +90,3 @@
         </div>
     </div>
 </div>
-<!-- <div *ngIf="data.operation === 'create'">
-    <p>product-create-modal works!</p>
-</div> -->

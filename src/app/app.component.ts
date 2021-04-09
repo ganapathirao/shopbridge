@@ -6,19 +6,25 @@ import { AppService } from './app.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent implements OnInit {
+  // Creating public variables
   title = 'shopbridge';
-  showLoader:boolean = true
-constructor(private appservice: AppService){}
-ngOnInit(){
-  this.appservice.isShowLoader.subscribe((res) => {
-    if(res) {
-      this.showLoader = true;
-    } else {
-      setTimeout(() => {
-        this.showLoader = false;
-      },1000)
-    }
-  })
-}
+  showLoader = true;
+
+  constructor(private appservice: AppService) {}
+
+  ngOnInit() {
+    // Subscribing to BehaviorSubject to hide/show the loader
+    this.appservice.isShowLoader.subscribe((response) => {
+      if (response) {
+        this.showLoader = true;
+      } else {
+        // Intentionally adding timeout to show the loader
+        setTimeout(() => {
+          this.showLoader = false;
+        }, 1000);
+      }
+    });
+  }
 }

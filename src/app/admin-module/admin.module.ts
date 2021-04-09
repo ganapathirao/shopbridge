@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductsComponent } from './products-list/products-list.component';
-import { AdminRoutingModule } from './admin-routing.module'
-import { MatTableModule } from '@angular/material/table'  
+import { AdminRoutingModule } from './admin-routing.module';
+import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material';
 import { ProductEditModalComponent } from './product-edit-modal/product-edit-modal.component';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatInputModule} from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatSelectModule} from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
-
 
 @NgModule({
   declarations: [
@@ -30,10 +29,7 @@ import { FormsModule } from '@angular/forms';
     MatSelectModule,
     FormsModule
   ],
-  providers:[
-    
-  ],
-  entryComponents:[
+  entryComponents: [
     ProductEditModalComponent
   ]
 })

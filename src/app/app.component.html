@@ -1,7 +1,12 @@
+<!-- Loading app header  -->
 <app-header></app-header>
+
+<!-- Main content load's here -->
 <div class="main-content-wrapper">
     <router-outlet></router-outlet>
 </div>
+
+<!-- Template for spinner  -->
 <div class="app-loader position-fixed d-flex align-items-center justify-content-center" *ngIf="showLoader">
     <mat-spinner></mat-spinner>
 </div>
