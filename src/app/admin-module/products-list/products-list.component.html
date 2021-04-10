@@ -3,7 +3,7 @@
       <div class="text-right">
         <input type="text" class="form-control d-inline-block w-auto mr-4" [(ngModel)]="searchText" 
         (input)="filterProducts()" placeholder="Enter name to search..." *ngIf="productsList && (productsList.length != 0 || searchText)">
-        <button mat-raised-button class="btn btn-outline-primary m-3" (click)="openDialog('create')">
+        <button mat-raised-button class="btn btn-outline-primary m-3" (click)="openDialog('create',{})">
             Add Product
         </button>
       </div>
