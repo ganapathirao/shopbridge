@@ -1,14 +1,15 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AppService } from 'src/app/app.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-edit-modal',
   templateUrl: './product-edit-modal.component.html',
   styleUrls: ['./product-edit-modal.component.scss']
 })
-export class ProductEditModalComponent implements OnInit {
+export class ProductEditModalComponent implements OnInit, OnDestroy {
 
   // Creating product form controls
   public productForm = this.fb.group({
@@ -19,6 +20,9 @@ export class ProductEditModalComponent implements OnInit {
   });
 
   public formValues: any;
+  public createItemSubscription$: Subscription;
+  public updateItemSubscription$: Subscription;
+  public deleteItemSubscription$: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -44,8 +48,8 @@ export class ProductEditModalComponent implements OnInit {
       return;
     }
     this.appService.isShowLoader.next(true);
-    const data = Object.assign({ ...this.productForm.value }, { id : Math.floor(Math.random() * 1000) });
-    this.appService.createNewProduct(data).subscribe(() => {
+    const data = Object.assign({ ...this.productForm.value }, { id: Math.floor(Math.random() * 1000) });
+    this.createItemSubscription$ = this.appService.createNewProduct(data).subscribe(() => {
       this.appService.dataChanged.next(true);
       this.appService.openSnackBar('Product successfully created', 'bg-success');
       this.dialogRef.close();
@@ -65,7 +69,7 @@ export class ProductEditModalComponent implements OnInit {
    */
   deleteItem(id: number): void {
     this.appService.isShowLoader.next(true);
-    this.appService.deleteProduct(id).subscribe(() => {
+    this.deleteItemSubscription$ = this.appService.deleteProduct(id).subscribe(() => {
       this.appService.dataChanged.next(true);
       this.appService.openSnackBar('Product successfully deleted....', 'bg-success');
       this.dialogRef.close();
@@ -88,7 +92,7 @@ export class ProductEditModalComponent implements OnInit {
     if (this.data && this.data.formData && this.productForm.valid) {
       const id = this.data.formData.id;
       const data = this.productForm.value;
-      this.appService.updateProduct(id, data).subscribe(() => {
+      this.updateItemSubscription$ = this.appService.updateProduct(id, data).subscribe(() => {
         this.appService.dataChanged.next(true);
         this.appService.openSnackBar('Product successfully updated', 'bg-success');
         this.dialogRef.close();
@@ -131,4 +135,14 @@ export class ProductEditModalComponent implements OnInit {
     return formValues === origionalValues;
   }
 
+  /**
+   * Function to unsubscribe observable subscriptions.
+   * Params : None
+   * Return : None
+   */
+  ngOnDestroy(): void {
+    this.createItemSubscription$ ? this.createItemSubscription$.unsubscribe() : '';
+    this.updateItemSubscription$ ? this.updateItemSubscription$.unsubscribe() : '';
+    this.deleteItemSubscription$ ? this.deleteItemSubscription$.unsubscribe() : '';
+  }
 }
