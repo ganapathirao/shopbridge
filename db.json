@@ -1,3 +1,11 @@
 {
-  "products": []
+  "products": [
+    {
+      "name": "nwe",
+      "description": "new",
+      "price": "111",
+      "currencySymbol": "$",
+      "id": 495
+    }
+  ]
 }

@@ -12,7 +12,7 @@ export class ProductEditModalComponent implements OnInit {
 
   // Creating product form controls
   public productForm = this.fb.group({
-    name: ['', Validators.required],
+    name: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9]*$')]],
     description: ['', Validators.required],
     price: [null, [Validators.required, Validators.pattern('[0-9]*')]],
     currencySymbol: ['$']
