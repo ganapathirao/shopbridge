@@ -38,7 +38,7 @@
                 <div class="position-relative mb-2">
                     <mat-form-field class="w-100" appearance="outline">
                       <mat-label>Name</mat-label>
-                      <input matInput placeholder="Enter Product Name" formControlName="name">
+                      <input matInput placeholder="Enter Product Name" spellcheck="false" formControlName="name">
                     </mat-form-field>
                     <div class="error-msg text-danger position-absolute" *ngIf="productForm?.controls['name'].touched && productForm?.controls['name']?.errors?.required">
                         Enter name value
@@ -50,7 +50,12 @@
                 <div class="position-relative mb-2">
                     <mat-form-field class="w-100" appearance="outline">
                         <mat-label>Description</mat-label>
-                        <textarea matInput placeholder="Enter Description" formControlName="description"></textarea>
+                        <textarea matInput placeholder="Enter Description" 
+                                    spellcheck="false"            
+                                    cdkTextareaAutosize
+                                    cdkAutosizeMinRows="1"
+                                    cdkAutosizeMaxRows="3"
+                                    formControlName="description"></textarea>
                     </mat-form-field>
                     <div class="error-msg text-danger position-absolute" *ngIf="productForm?.controls['description'].touched && productForm?.controls['description']?.errors?.required">
                         Enter description value
