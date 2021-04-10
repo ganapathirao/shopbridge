@@ -36,7 +36,7 @@ export class ProductsComponent implements OnInit {
    * Function to get products list
    * Params : None
    * Return : None
-  */
+   */
   getProductsList(): void {
     this.appService.getProductsList().subscribe((response: any) => {
       this.productsList = response;
@@ -52,7 +52,7 @@ export class ProductsComponent implements OnInit {
    * Function to open product edit/create/delete modal
    * Params : method,element
    * Return : None
-  */
+   */
   openDialog(method: string, element: object): void {
     this.dialog.open(ProductEditModalComponent, {
       width: (method !== 'delete') ? '450px' : 'auto',
@@ -64,7 +64,7 @@ export class ProductsComponent implements OnInit {
    * Function to filter products by name.
    * Params : None
    * Return : None
-  */
+   */
   filterProducts(): void {
     if (!this.searchText) {
       this.productsList = this.productsListCopy;

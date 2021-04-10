@@ -37,7 +37,7 @@ export class ProductEditModalComponent implements OnInit {
    * Function to create a new item
    * Params : None
    * Return : None
-  */
+   */
   createItem(): void {
     this.productForm.markAllAsTouched();
     if (this.productForm.invalid) {
@@ -62,7 +62,7 @@ export class ProductEditModalComponent implements OnInit {
    * Function to delete product
    * Params : id
    * Return : None
-  */
+   */
   deleteItem(id: number): void {
     this.appService.isShowLoader.next(true);
     this.appService.deleteProduct(id).subscribe(() => {
@@ -82,7 +82,7 @@ export class ProductEditModalComponent implements OnInit {
    * Function to update the product
    * Params : None
    * Return : None
-  */
+   */
   updateItem(): void {
     this.appService.isShowLoader.next(true);
     if (this.data && this.data.formData && this.productForm.valid) {
@@ -108,7 +108,7 @@ export class ProductEditModalComponent implements OnInit {
    * Function to sort the array by it's keys
    * Params : array which needs to be sort
    * Return : sorted array
-  */
+   */
   orderByKey(array: Array<any>): any {
     const ordered = Object.keys(array).sort().reduce(
       (obj, key) => {
@@ -124,7 +124,7 @@ export class ProductEditModalComponent implements OnInit {
    * Function to check the form values changed or not.
    * Params : None
    * Return : Boolean
-  */
+   */
   isFormUpdated(): boolean {
     const formValues = JSON.stringify(this.orderByKey(this.productForm.value));
     const origionalValues = JSON.stringify(this.orderByKey(this.formValues));

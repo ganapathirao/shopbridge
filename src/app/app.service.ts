@@ -26,7 +26,7 @@ export class AppService {
    * Function to display snackbar message
    * Params : message, type
    * Return : None
-  */
+   */
   openSnackBar(message: string, type: string): void {
     this.snackBar.open(message, '', {
       duration: 3000,
@@ -40,7 +40,7 @@ export class AppService {
    * Function to fetch list of products
    * Params : None
    * Return : Observable
-  */
+   */
   getProductsList(): Observable<any> {
     return this.http.get(endPoint);
   }
@@ -49,7 +49,7 @@ export class AppService {
    * Function to create new product
    * Params : data to be saved
    * Return : Observable
-  */
+   */
   createNewProduct(data: object): Observable<any> {
     return this.http.post(endPoint, data);
   }
@@ -58,7 +58,7 @@ export class AppService {
    * Function to delete product
    * Params : id
    * Return : Observable
-  */
+   */
   deleteProduct(id: number): Observable<any> {
     return this.http.delete(endPoint + id);
   }
@@ -67,7 +67,7 @@ export class AppService {
    * Function to update the product data
    * Params : id, data
    * Return : Observable
-  */
+   */
   updateProduct(id: number, data: object): Observable<any> {
     return this.http.put(endPoint + id, data);
   }
