@@ -75,7 +75,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.productsList = this.productsListCopy;
     } else {
       this.productsList = this.productsListCopy.filter((product) =>
-        product.name.includes(this.searchText)
+        product.name.toLowerCase().includes(this.searchText.toLowerCase())
       );
     }
   }
